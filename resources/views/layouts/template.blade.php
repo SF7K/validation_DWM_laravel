@@ -13,10 +13,10 @@
     <div>
         @if (Route::has('login'))
             <div class="flex navbar">
+                <a href="{{ url('/home') }}">Piano Mino</a>
+                <a href="{{ route('pianos') }}">Nos Pianos</a>
                 @auth
-                    <a href="{{ url('/home') }}">Piano Mino</a>
-                    <a href="">Nos Pianos</a>
-                    <a href="">Ajouter un piano</a>
+                    <a href="{{ route('addPiano') }}">Ajouter un piano</a>
                     <a href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
