@@ -19,20 +19,22 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 // C.R.U.D.
-
-// CREATE
-Route::get('/add', 'PianoController@addPiano')->name('addPiano');
-Route::post('/store', 'PianoController@storePiano')->name('store');
-
 // READ
-Route::get('/pianos', 'PublicPianoController@readPianos')->name('pianos');
+Route::get('/pianos', 'PianoController@readPianos')->name('pianos');
 
 
-// UPDATE
-Route::get('/edit/{id}', 'PianoController@editPiano')->name('edit');
-Route::post('/update/{id}', 'PianoController@updatePiano')->name('update');
+Route::middleware(['auth'])->group(function () {
+    // CREATE
+    Route::get('/add', 'PianoController@addPiano')->name('addPiano');
+    Route::post('/store', 'PianoController@storePiano')->name('store');
 
-//DELETE
-Route::post('/delete/{id}', 'PianoController@deletePiano')->name('delete');
+    // UPDATE
+    Route::get('/edit/{id}', 'PianoController@editPiano')->name('edit');
+    Route::post('/update/{id}', 'PianoController@updatePiano')->name('update');
+
+    //DELETE
+    Route::post('/delete/{id}', 'PianoController@deletePiano')->name('delete');
+});
+
+

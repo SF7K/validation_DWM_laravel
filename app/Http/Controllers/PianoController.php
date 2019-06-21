@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 
 class PianoController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth');
-    }
     // C.R.U.D.
 
     public function storePiano(Request $request) {
@@ -31,7 +28,11 @@ class PianoController extends Controller
         return view('pianos.add_piano', compact('pianos'));
     }
 
-
+    // READ
+    public function readPianos() {
+        $pianos = Piano::All();
+        return view('pianos.read_pianos_list', compact('pianos'));
+    }
 
     // UPDATE
     public function editPiano($id) {
